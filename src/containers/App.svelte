@@ -1,6 +1,9 @@
-<div class="main">
-    <h1>Hello!</h1>
-</div>
+<script>
+    import Header from '../components/Header.svelte';
+    import Main from '../components/Main.svelte';
+    import Sidebar from '../components/Sidebar.svelte';
+    import TimeLine from '../components/TimeLine.svelte';
+</script>
 
 <style>
     :global(body){
@@ -8,3 +11,9 @@
         color: #fff;
     }
 </style>
+
+<Header />
+<Main >
+    <TimeLine />
+    <Sidebar />
+</Main>
