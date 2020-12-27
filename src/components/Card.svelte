@@ -1,8 +1,11 @@
 <script>
     import {blur} from 'svelte/transition';
+
     import Comments from './Comments.svelte';
     import Modal from './Modal.svelte';
     import Share from './Share.svelte';
+
+    import { likeCount } from '../store/store.js';
 
     export let username;
     export let location;
@@ -12,9 +15,21 @@
     export let avatar;
 
     let isModal = false;
+    let like = false;
+    let bookmark = false;
+
 
     function toggleModal(){
         isModal = !isModal;
+    }
+
+    function handleLike(){
+        like = !like;
+        if (like){
+            likeCount.update(n => n + 1);
+        } else {
+            likeCount.update(n => n - 1);
+        }
     }
 
 </script>
@@ -98,8 +113,8 @@
       font-size: 14px;
     }
     .active-like {
-      color: #bc1888;
-      animation: bounce linear 0.8s;
+      color: #ff0000;
+      animation: bounce linear 0.5s;
       animation-iteration-count: 1;
       transform-origin: 20% 20%;
     }
@@ -112,19 +127,19 @@
         transform: translate(0px, 0px);
       }
       15% {
-        transform: translate(0px, -25px);
+        transform: translate(0px, -15px);
       }
       30% {
         transform: translate(0px, 0px);
       }
       45% {
-        transform: translate(0px, -15px);
+        transform: translate(0px, -10px);
       }
       60% {
         transform: translate(0px, 0px);
       }
       75% {
-        transform: translate(0px, -5px);
+        transform: translate(0px, -3px);
       }
       100% {
         transform: translate(0px, 0px);
@@ -157,17 +172,17 @@
             </div>
         </div>
         <div class="Card-photo">
-            <figure>
+            <figure on:dblclick={handleLike}>
                 <img src="{photo}" alt="{username}">
             </figure>
         </div>
         <div class="Card-icons">
             <div class="Card-icons-first">
-                <i class="fas fa-heart"/>
+                <i class="fas fa-heart" on:click={handleLike} class:active-like={like}/>
                 <i class="fas fa-paper-plane" on:click={toggleModal} />
             </div>
             <div class="Card-icons-second">
-                <i class="fas fa-bookmark"/>
+                <i class="fas fa-bookmark" on:click={() => (bookmark = !bookmark)} class:active-bookmark={bookmark} />
             </div>
         </div>
         <div class="Card-description">
