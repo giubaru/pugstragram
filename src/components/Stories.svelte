@@ -69,7 +69,7 @@
                 <div class="Stories-item-box">
                     <img src="https://arepa.s3.amazonaws.com/oscar.png" alt="">
                 </div>
-                <h2>chuli
+                <h2>hardcodedusername
                     <span>10 horas antes</span>
                 </h2>
                 
