@@ -4,7 +4,8 @@
   "description": "Instagram clone",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "start": "webpack serve"
   },
   "author": "Giuliano Marinella",
   "license": "MIT",
@@ -19,6 +20,7 @@
     "html-webpack-plugin": "^4.5.0",
     "svelte-loader": "^2.13.6",
     "webpack": "^5.11.0",
-    "webpack-cli": "^4.3.0"
+    "webpack-cli": "^4.3.0",
+    "webpack-dev-server": "^3.11.0"
   }
 }
