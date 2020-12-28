@@ -7,7 +7,7 @@
     "dev": "sapper dev",
     "build": "sapper build",
     "start": "node __sapper__/build",
-    "export": "sapped export"
+    "export": "sapper export"
   },
   "author": "Giuliano Marinella",
   "license": "MIT",
