@@ -3,7 +3,7 @@ import compression from 'compression'
 import polka from 'polka'
 import * as sapper from '@sapper/server'
 
-const { NODE_ENV } = process.env
+const { PORT, NODE_ENV } = process.env
 
 const dev = NODE_ENV === 'development'
 
@@ -13,8 +13,8 @@ polka()
         threshold: 0
     }),
     sirv('static', { dev }),
-    sapper.middleweare()
+    sapper.middleware()
 )
-.listen(POST, err => {
+.listen(PORT, err => {
     if (err) console.log(err);
 })

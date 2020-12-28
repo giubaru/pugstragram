@@ -1,22 +1,34 @@
+<script context="module">
+    export async function preload(){
+        let data = {};
+        const response = await this.fetch(
+            `https://us-central1-pugstagram-co.cloudfunctions.net/data`
+        )
+        data = await response.json()
+        return { data }
+    }
+</script>
+
 <script>
     import {onMount} from 'svelte';
-import Card from '../components/Card.svelte';
+    // import Card from '../components/Card.svelte';
     
     import Header from '../components/Header.svelte';
     import Main from '../components/Main.svelte';
     import Sidebar from '../components/Sidebar.svelte';
     import TimeLine from '../components/TimeLine.svelte';
 
-    let data = {};
-    const API = 'https://us-central1-pugstagram-co.cloudfunctions.net/data';
-    onMount(async () => {
-        const resp = await fetch(API);
-        data = await resp.json();
-    })
+    export let data;
 </script>
+
+<svelte:head>
+    <title>Index</title>
+</svelte:head>
 
 <Header />
 <Main >
     <TimeLine posts={data.posts}/>
-    <Sidebar {...data.user}/>
+    {#if data.user}
+        <Sidebar {... data.user}/>
+    {/if}
 </Main>
